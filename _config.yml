@@ -1,4 +1,4 @@
 theme: jekyll-theme-cayman
 title: Reward Based Epsilon Decay
 description: An exploration strategy based on agent's learning abilities.
-show_downloads: "false"
+show_downloads: false
