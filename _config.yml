@@ -2,3 +2,6 @@ theme: jekyll-theme-cayman
 title: Reward Based Epsilon Decay
 description: An exploration strategy based on agent's learning abilities.
 show_downloads: false
+
+github:
+  repository_url: https://github.com/aakash94/DeepLearningBasics/blob/master/9DQN/CartPole.ipynb
