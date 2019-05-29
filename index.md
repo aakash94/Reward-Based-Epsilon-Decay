@@ -44,8 +44,8 @@ A common way to obtain this by multiplying Epsilon by a real value less than 1 e
 
 ### The Reward Based Decay
 
-An alternate approach to epsilon decay that I found useful in certain problems is using the reward the decide the decay.
-Only when an agent has crossed some reward threshold, the value of ε is reduced. Instead of assuming that the agent is learning more every episode. We wait for proof of agent’s learning before reducing the epsilon value. Thus we set higher targets for agent every time ε is lowered, and wait for agent to reach the newer target before repeating the same steps again.
+An alternate approach to epsilon decay that I found useful in certain problems is using the reward t0 decide the decay.
+Only when an agent has crossed some reward threshold, the value of ε is reduced. Instead of assuming that the agent is learning more every episode, we wait for proof of agent’s learning before reducing the epsilon value. Thus we set higher targets for agent every time ε is lowered, and wait for agent to reach the newer target before repeating the same steps again.
 
 
 
@@ -75,7 +75,7 @@ The problem is considered solved when the agent gets an average reward of 195 ov
 We start by initializing `EPSILON` and `MINREWARD` with values that seem suitable for the problem.
 
 ```markdown
-EPSILON    = 1
+EPSILON = 1
 MINREWARD = 30
 ```
 
@@ -102,7 +102,7 @@ _Epsilon on left, rewards on right. X-axis depicting episodes in both case._
 
 ## Intuition
 
-Another way to interpret this decay strategy is based on responsibility. An agent is granted greater responsibility to act as it accomplishes greater rewards. Agent failing to meet the targets will be compelled to explore more until it does.
+Another way to interpret this decay strategy is based on responsibility. An agent is granted greater responsibility to act as it accomplishes greater rewards. Agent failing to meet the targets will be compelled to explore more until it does meet the targets.
 
 
 
