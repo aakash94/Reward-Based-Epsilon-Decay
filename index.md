@@ -2,7 +2,7 @@
 
 In Reinforcement Learning(RL) the core problem is often phrased as that of an agent learning to interact with an environment.
 An agent's behaviour in an environment is defined by its policy. We will be looking into a subset of such algorithms known as on-policy algorithms.
-Here an agent has only policy governing its movement in the environment. The agent uses the same policy to explore the environment and act in it.
+Here the agent has only one single policy governing its movement in the environment. The agent uses the same policy to explore the environment and act in it.
 
 
 
