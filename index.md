@@ -16,7 +16,7 @@ How will one know what lies behind door number 2 if one is satisfied with the re
 
 This is where exploration comes in. When a agent explores it does not necessarily act to the best of its knowledge, instead it explores different options available, dictated by some exploration strategy.
 
-What good is trying to know about what's behind every door if one never makes use of that information.
+What good is trying to know about what's behind every door if one never makes use of that information?
 
 ## Epsilon Greedy
 
