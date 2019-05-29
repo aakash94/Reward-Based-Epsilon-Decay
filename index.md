@@ -96,6 +96,7 @@ The biggest advantage observed here is controlled epsilon decay across the life 
 Results of above code snippet in OpenAI's CartPole-v0 can be seen the graphs below.
 ![Epsilon Decay](edecay_graphs/run1/epsilon.png)
 ![Rewards](edecay_graphs/run1/reward.png)
+
 _Epsilon on left, rewards on right. X-axis depicting episodes in both case._
 
 
