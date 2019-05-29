@@ -30,7 +30,7 @@ With probability 1-ε the agent acts greedily.
 ```
 
 Here we have established a strategy to exploit and explore based on a variable.
-A value of ε closer to 1 will result in greater exploration
+A value of ε closer to 1 will result in greater exploration.
 Conversely, a value closer to 0 will result greater exploitation.
 
 
