@@ -21,7 +21,7 @@ What good is trying to know about what's behind every door if one never makes us
 ## Epsilon Greedy
 
 Now that we are aware of the need to balance exploration and exploitation, we are ready to talk about Epsilon Greedy.
-It is one of the most popular strategy to balance exploration and exploitation. Here is how it goes.
+It is one of the most popular strategies to balance exploration and exploitation. Here is how it goes.
 
 ```markdown
 ε is assigned a real number between 0 and 1.
