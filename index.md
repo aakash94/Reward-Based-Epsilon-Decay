@@ -44,7 +44,7 @@ A common way to obtain this by multiplying Epsilon by a real value less than 1 e
 
 ### The Reward Based Decay
 
-An alternate approach to epsilon decay that I found useful in certain problems is using the reward t0 decide the decay.
+An alternate approach to epsilon decay that I found useful in certain problems, is using the reward to decide the decay.
 Only when an agent has crossed some reward threshold, the value of ε is reduced. Instead of assuming that the agent is learning more every episode, we wait for proof of agent’s learning before reducing the epsilon value. Thus we set higher targets for agent every time ε is lowered, and wait for agent to reach the newer target before repeating the same steps again.
 
 
