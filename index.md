@@ -69,7 +69,7 @@ The two function calls in the above algorithm for epsilon decay and increment ca
 ### Decay plan for OpenAI's CartPole-v0
 
 The problem is considered solved when the agent gets an average reward of 195 over 100 consecutive trials.
-The maximum attainable score from any episode is 200. A standard start and end value for ε could be 1 and 0 respectively, where we start with maximum possible exploitation and end with maximum possible exploitation. Since all the rewards we obtain are whole numbers, we can at least increment target reward thresholds by 1 at the very least to make newer thresholds more challenging than the last one. The final parameter that remains to be decided is the number of steps to take form maximum exploration to maximum exploitation. Since the problem statement has a well defined goal of reaching 195, it is possible to use that to decide the steps. We calculate the steps by assuming that the agent should reach the final goal threshold with exploitation alone.
+The maximum attainable score from any episode is 200. A standard start and end value for ε could be 1 and 0 respectively, where we start with maximum possible exploitation and end with maximum possible exploitation. Since all the rewards we obtain are whole numbers, we can at least increment target reward thresholds by 1 to make newer thresholds more challenging than the last one. The final parameter that remains to be decided is the number of steps to take form maximum exploration to maximum exploitation. Since the problem statement has a well defined goal of reaching 195, it is possible to use that to decide the steps. We calculate the steps by assuming that the agent should reach the final goal threshold with exploitation alone.
 
 
 ```markdown
@@ -95,7 +95,7 @@ if EPSILON > MINIMUM_EPSILON and LAST_REWARD >= REWARD_THRESHOLD:
 ## Results
 
 The biggest advantage observed here is controlled epsilon decay across the life of an agent irrespective of how fast or slow the agent learns. Thus removing the reliance of decay on number of episodes. The results produced are more stable results and easier to replicate.
-Using RBED instead of exponential decay in the [Neural Episodic Controller solution by Karpathy](https://gym.openai.com/evaluations/eval_lEi8I8v2QLqEgzBxcvRIaA/ "OpenAI's solution page") showcased on the webpage for cartpole by OpenAI as a base, over 500% improvement was seen in on the agent’s ability to solve the environment within 500 episodes.
+Using RBED instead of exponential decay in the [Neural Episodic Controller solution by Karpathy](https://gym.openai.com/evaluations/eval_lEi8I8v2QLqEgzBxcvRIaA/ "OpenAI's solution page"), yields over 500% improvement in agent’s ability to solve the environment within 500 episodes.
 
 Results of above code snippet in OpenAI's CartPole-v0 can be seen the graphs below.
 
