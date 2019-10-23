@@ -59,49 +59,56 @@ Let us now take a look at how it would look in code.
 ### General pseudocode
 
 ```markdown
-if EPSILON > MINIMUM_EPSILON and LAST_EPISODE_REWARD > MINIMUN_REWARD:    
-    EPSILON -= DECAY_DELTA    
-    MINIMUN_REWARD += REWARD_INCREMENT_DELTA
+if EPSILON > MINIMUM_EPSILON and LAST_REWARD >= REWARD_THRESHOLD:    
+    EPSILON = DECAY_EPSILON(EPSILON)    
+    REWARD_THRESHOLD = INCREMENT_REWARD(REWARD_THRESHOLD)
 ```
 
-It is also possible to use decay and increment rates (demonstrated below) instead of doing so in chunks (as seen above)
+The two function calls in the above algorithm for epsilon decay and increment can be adjusted to user needs. The decay and increment could be additive or multiplicative or something else entirely, depending on the use case.  This code snippet is what would replace the simple ε=ε*decay_rate used in exponential decay. The key idea presented here is that only when the agent meets or surpasses the reward threshold, is the epsilon decayed.
 
-```markdown
-if EPSILON > MINIMUM_EPSILON and LAST_EPISODE_REWARD > MINIMUN_REWARD:    
-    EPSILON *= EPSILON_DECAY_RATE   
-    MINIMUN_REWARD *= REWARD_INCREMENT_RATE
-```
-
-### For a DQN trying to solve OpenAI's CartPole-v0
+### Decay plan for OpenAI's CartPole-v0
 
 The problem is considered solved when the agent gets an average reward of 195 over 100 consecutive trials.
-We start by initializing `EPSILON` and `MINREWARD` with values that seem suitable for the problem.
+The maximum attainable score from any episode is 200. A standard start and end value for ε could be 1 and 0 respectively, where we start with maximum possible exploitation and end with maximum possible exploitation. Since all the rewards we obtain are whole numbers, we can at least increment target reward thresholds by 1 at the very least to make newer thresholds more challenging than the last one. The final parameter that remains to be decided is the number of steps to take form maximum exploration to maximum exploitation. Since the problem statement has a well defined goal of reaching 195, it is possible to use that to decide the steps. We calculate the steps by assuming that the agent should reach the final goal threshold with exploitation alone.
+
 
 ```markdown
-EPSILON = 1
-MINREWARD = 30
+EPSILON = 1.0
+MINIMUM_EPSILON = 0.0
+REWARD_TARGET = 195
+STEPS_TO_TAKE = REWARD_TARGET
+REWARD_INCREMENT = 1
+REWARD_THRESHOLD = 0
+EPSILON_DELTA = (EPSILON - MINIMUM_EPSILON)/STEPS_TO_TAKE
 ```
 
-At the end of each episode we conditionally adjust the values.
+When time comes to decay ε the values are conditionally adjusted.
 
 ```markdown
-if EPSILON > 0.2 and total_reward > MINREWARD:    
-    EPSILON -= 0.1    
-    MINREWARD += 20
+if EPSILON > MINIMUM_EPSILON and LAST_REWARD >= REWARD_THRESHOLD:    
+    EPSILON = EPSILON - EPSILON_DELTA    
+    REWARD_THRESHOLD = REWARD_THRESHOLD + REWARD_INCREMENT
 
 ```
 
 
 ## Results
 
-The biggest advantage observed here is controlled epsilon decay across the life of an agent irrespective of how fast or slow the agent learns. Thus removing the reliance of decay on number of episodes.
+The biggest advantage observed here is controlled epsilon decay across the life of an agent irrespective of how fast or slow the agent learns. Thus removing the reliance of decay on number of episodes. The results produced are more stable results and easier to replicate.
+Using RBED instead of exponential decay in the [Neural Episodic Controller solution by Karpathy](https://gym.openai.com/evaluations/eval_lEi8I8v2QLqEgzBxcvRIaA/ "OpenAI's solution page") showcased on the webpage for cartpole by OpenAI as a base, over 500% improvement was seen in on the agent’s ability to solve the environment within 500 episodes.
 
 Results of above code snippet in OpenAI's CartPole-v0 can be seen the graphs below.
-![Epsilon Decay](edecay_graphs/run1/epsilon.png)
-![Rewards](edecay_graphs/run1/reward.png)
 
-_Epsilon on left, rewards on right. X-axis depicting episodes in both case._
+![Epsilong](graphs/edecay_graphs/RvE.png)
+_Comparison of how ε decays across episodes. Red line represents Reward based decay and grey line represents exponential decay._
 
+![Rewards](graphs/RunGraphs/ep_val.png)
+_Comparison of reward obtained by the agent at every given episode, averaged across 20 runs. Rbed makes it more likely for the agent to cross the threshold of 195. The graph also depicts that while exponential ‘peaks’ earlier when compared to rbed, it fails to reach a value as high._
+
+![Average Rewards across 100 episode](graphs/RunGraphs/avg_val.png)
+_Comparison of average reward obtained across last 100 episodes, averaged across 20 runs. This is the metric used to determine the solution of the environment. The long term trend agrees with the experimental results that rbed is more successful in finding a solution._
+
+Reward based ε decay strategy also outperforms exponential decay strategy when used with DQNs on the same problem, with the added benefit of easier hyperparameter tuning. Not only does it solve the environment quicker, it does so more consistently.
 
 ## Intuition
 

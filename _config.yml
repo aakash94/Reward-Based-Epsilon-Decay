@@ -4,4 +4,4 @@ description: An exploration strategy based on agent's learning abilities.
 show_downloads: false
 
 github:
-  repository_url: https://github.com/aakash94/DeepLearningBasics/blob/master/9DQN/CartPole.ipynb
+  repository_url: https://github.com/aakash94/RED
