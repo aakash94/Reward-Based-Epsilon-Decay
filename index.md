@@ -100,12 +100,17 @@ Using RBED instead of exponential decay in the [Neural Episodic Controller solut
 Results of above code snippet in OpenAI's CartPole-v0 can be seen the graphs below.
 
 ![Epsilong](graphs/edecay_graphs/RvE.png)
+
 _Comparison of how ε decays across episodes. Red line represents Reward based decay and grey line represents exponential decay._
 
+
 ![Rewards](graphs/RunGraphs/ep_val.png)
+
 _Comparison of reward obtained by the agent at every given episode, averaged across 20 runs. Rbed makes it more likely for the agent to cross the threshold of 195. The graph also depicts that while exponential ‘peaks’ earlier when compared to rbed, it fails to reach a value as high._
 
+
 ![Average Rewards across 100 episode](graphs/RunGraphs/avg_val.png)
+
 _Comparison of average reward obtained across last 100 episodes, averaged across 20 runs. This is the metric used to determine the solution of the environment. The long term trend agrees with the experimental results that rbed is more successful in finding a solution._
 
 Reward based ε decay strategy also outperforms exponential decay strategy when used with DQNs on the same problem, with the added benefit of easier hyperparameter tuning. Not only does it solve the environment quicker, it does so more consistently.
